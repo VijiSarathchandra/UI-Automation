@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loginToApp } from './login.spec.js';
 
-test('Verify subject duplication error', async ({ page }) => {
+test('Verify subject creation', async ({ page }) => {
 
     // Login to the application
     await loginToApp(page);
@@ -16,10 +16,10 @@ test('Verify subject duplication error', async ({ page }) => {
     await page.getByText('Subject Management').click();
    
     await page.getByRole('button', { name: 'New Subject' }).click();
-    await page.getByRole('textbox', { name: 'Enter subject name' }).fill('SEingineering');
+    await page.getByRole('textbox', { name: 'Enter subject name' }).fill('New Subject');
     await page.getByLabel('Add Subject').locator('span').filter({ hasText: 'Active' }).click();
     await page.getByRole('option', { name: 'Active', exact: true }).click();
-    await page.getByRole('textbox', { name: 'Enter description' }).fill('JavaScript is a versatile programming language used for web development, enabling interactive and dynamic content on websites.');
+    await page.getByRole('textbox', { name: 'Enter description' }).fill('New Subject Description');
     await page.getByRole('button', { name: 'Save' }).click();
     
     const toast = page.getByRole('alert');
